@@ -35,6 +35,11 @@ encapsulamiento, herencia y polimorfismo.
 - Repositorio: [GitHub](https://github.com/hitses/daily-trends-muchosol)
   - No se van a crear ramas de preproducción (pre) ni de desarrollo (dev), únicamente una rama principal de producción (pro).
   - Sí van a crearse ramas específicas para cada tarea o subtareas y así llevar un mejor control del trabajo y los cambios que se lleven a cabo en la API.
+  - Los commits tienen una nomenclatura inicial para indicar qué tipo de cambio o añadido hay. Son los siguientes:
+    - A - Message: se añade contenido.
+    - U - Message: se actualiza contenido.
+    - D - Message: se elimina contenido.
+    - B - Message: se corrige un bug.
 - Tecnologías utilizadas:
   - Node.JS: 20.0.0
   - Prettier para el formato del código.
