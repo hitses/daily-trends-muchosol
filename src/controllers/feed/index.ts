@@ -1,0 +1,5 @@
+export * from './createFeed.controller'
+export * from './getFeeds.controller'
+export * from './getFeed.controller'
+export * from './patchFeed.controller'
+export * from './deleteFeed.controller'
