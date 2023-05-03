@@ -1,0 +1,5 @@
+export * from './createFeed.service'
+export * from './getFeeds.service'
+export * from './getFeed.service'
+export * from './patchFeed.service'
+export * from './deleteFeed.service'
