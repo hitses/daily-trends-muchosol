@@ -1,6 +1,6 @@
 # Daily Trends
 
-Prueba técnica para Muchosol.
+Prueba técnica para [Muchosol](https://www.muchosol.es/).
 
 ## Descripción
 
@@ -42,19 +42,28 @@ encapsulamiento, herencia y polimorfismo.
     - B - Message: se corrige un bug.
 - Tecnologías utilizadas:
   - Node.JS: 20.0.0
-  - Prettier para el formato del código.
 
-#### Pasos para ejecutar el proyecto en desarrollo
+### Pasos para ejecutar el proyecto en desarrollo
 
-**NOTA**: se debe utilizar siempre Yarn, NPM o cualquier otro gestor de paquetes para la instalación/ejecución de comandos pero no mezclarlos. En mi caso, he usado Yarn.
+**NOTA**: se debe utilizar siempre Yarn, NPM o cualquier otro gestor de paquetes para la instalación/ejecución de comandos pero no mezclarlos.
 
-**Implementación de MongoDB con Docker en curso**
+#### Iniciar la base de datos local en Docker
+
+**NOTA**: se debe instalar [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ```
-Una vez implementado, se usará Docker para el funcionamiento de la base de datos MongoDB.
+docker-compose up -d
 ```
 
-Instalamos las dependencias:
+Ruta a la base de datos:
+
+```
+mongodb://localhost:27017/daily-trends
+```
+
+**NOTA**: para esta prueba la base de datos no tiene ni usuario ni contraseña al estar en un entorno cerrado de pruebas.
+
+#### Instalación de las dependencias
 
 ```
 yarn
@@ -66,19 +75,7 @@ o
 npm i
 ```
 
-Se debe ejecutar el comando siguiente para que los cambios realizados en los archivos **.ts** genere una build de desarrollo en **.js**:
-
-```
-yarn tsc
-```
-
-o
-
-```
-npm run tsc
-```
-
-Una vez hecho y manteniendo esa ejecución activa, realizamos la misma operación en otra consola con el siguiente comando para ejecutar Node.JS:
+Para levantar el entorno de desarrollo en local se debe ejecutar el comando siguiente:
 
 ```
 yarn dev
