@@ -1,11 +1,11 @@
-import { chromium } from 'playwright'
+import playwright from 'playwright'
 import { Page } from '@playwright/test'
 import { MUNDO, PAIS, USER_AGENT } from '../constants'
 import { FeedInterface } from '../models/feed.interface'
 
 export const scrapElMundo = async () => {
   try {
-    const browser = await chromium.launch({ headless: true })
+    const browser = await playwright.chromium.launch({ headless: true })
     const context = await browser.newContext(USER_AGENT)
     const page = await context.newPage()
     await page.goto(MUNDO.URL)
@@ -28,13 +28,14 @@ export const scrapElMundo = async () => {
 
     return mundoNews
   } catch (err) {
+    if (err instanceof playwright.errors.TimeoutError) return 'Timeout'
     return err
   }
 }
 
 export const scrapElPais = async () => {
   try {
-    const browser = await chromium.launch({ headless: true })
+    const browser = await playwright.chromium.launch({ headless: true })
     const context = await browser.newContext(USER_AGENT)
     const page: Page = await context.newPage()
     await page.goto(PAIS.URL)
@@ -54,6 +55,7 @@ export const scrapElPais = async () => {
 
     return elements
   } catch (err) {
+    if (err instanceof playwright.errors.TimeoutError) return 'Timeout'
     return err
   }
 }
