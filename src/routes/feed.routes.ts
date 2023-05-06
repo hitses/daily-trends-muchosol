@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import {
-  createFeed,
+  createFeeds,
   deleteFeed,
   getFeed,
   getFeeds,
@@ -9,7 +9,7 @@ import {
 
 const router = Router()
 
-router.post('/new', createFeed)
+router.post('/new', createFeeds)
 router.get('/', getFeeds)
 router.get('/:id', getFeed)
 router.patch('/:id', patchFeed)
