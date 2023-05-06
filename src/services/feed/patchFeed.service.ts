@@ -14,8 +14,7 @@ export const patchFeedService = async (
       { runValidators: true, new: true }
     )
 
-    if (!feed)
-      return { status: 404, data: { message: 'No se encontró el documento' } }
+    if (!feed) return { status: 404, data: { message: 'Feed not found' } }
 
     return { status: 200, data: feed }
   } catch (err) {
