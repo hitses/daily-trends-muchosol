@@ -9,7 +9,7 @@ export const patchFeedService = async (
 ) => {
   try {
     const feed = await feedModel.findOneAndUpdate(
-      { _id, deleted: false },
+      { _id, delete: false },
       { text, href, newspaper },
       { runValidators: true, new: true }
     )
