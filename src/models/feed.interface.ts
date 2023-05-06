@@ -1,5 +1,7 @@
 export interface FeedInterface {
-  newspaper: string
+  newspaper: NewspaperType
   href: string
   text: string
 }
+
+export type NewspaperType = 'El País' | 'El Mundo'
