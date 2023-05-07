@@ -1,5 +1,10 @@
 import { Router } from 'express'
 import {
+  deleteFeedValidations,
+  getFeedValidations,
+  patchFeedValidations
+} from '../middlewares'
+import {
   createFeeds,
   deleteFeed,
   getFeed,
@@ -11,8 +16,8 @@ const router = Router()
 
 router.post('/new', createFeeds)
 router.get('/', getFeeds)
-router.get('/:id', getFeed)
-router.patch('/:id', patchFeed)
-router.delete('/:id', deleteFeed)
+router.get('/:id', getFeedValidations, getFeed)
+router.patch('/:id', patchFeedValidations, patchFeed)
+router.delete('/:id', deleteFeedValidations, deleteFeed)
 
 export default router
