@@ -1,17 +1,31 @@
+import { RESPONSE } from '../../constants'
 import feedModel from '../../models/feed.model'
 
 export const deleteFeedService = async (_id: string) => {
   try {
-    const feed = await feedModel.findOneAndUpdate(
+    await feedModel.findOneAndUpdate(
       { _id, delete: false },
       { delete: true },
       { new: true }
     )
 
-    if (!feed) return { status: 404, data: { message: 'Feed not found' } }
-
-    return { status: 200, data: { message: 'Feed deleted succesfully' } }
+    return {
+      status: RESPONSE.DELETED.status,
+      data: {
+        status: RESPONSE.DELETED.status,
+        type: RESPONSE.DELETED.type,
+        message: 'Feed deleted succesfully'
+      }
+    }
   } catch (err) {
-    return { status: 500, data: { message: 'Delete Feeds Service', err } }
+    return {
+      status: RESPONSE.SERVER_ERROR.status,
+      data: {
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
+        message: 'Delete Feeds Service',
+        err
+      }
+    }
   }
 }

@@ -1,8 +1,9 @@
+import { RESPONSE } from '../../constants'
 import feedModel from '../../models/feed.model'
 
 export const getFeedsService = async () => {
   try {
-    const result = await feedModel.aggregate([
+    const feeds = await feedModel.aggregate([
       // Get the five front page stories of each newspaper
       { $sort: { updatedAt: -1 } },
       {
@@ -39,8 +40,23 @@ export const getFeedsService = async () => {
       { $limit: 10 }
     ])
 
-    return { status: 200, data: result }
+    return {
+      status: RESPONSE.OK.status,
+      data: {
+        status: RESPONSE.OK.status,
+        type: RESPONSE.OK.type,
+        feeds
+      }
+    }
   } catch (err) {
-    return { status: 500, data: { message: 'Get Feeds Service', err } }
+    return {
+      status: RESPONSE.SERVER_ERROR.status,
+      data: {
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
+        message: 'Get Feeds Service',
+        err
+      }
+    }
   }
 }

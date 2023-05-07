@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+import { RESPONSE } from '../constants'
 
 export const bodyNotFound = async (
   req: Request,
@@ -7,10 +8,10 @@ export const bodyNotFound = async (
 ) => {
   try {
     if (Object.keys(req.body).length === 0) {
-      return res.status(404).json({
+      return res.status(RESPONSE.NOT_FOUND.status).json({
         data: {
-          status: 404,
-          type: 'Not found',
+          status: RESPONSE.NOT_FOUND.status,
+          type: RESPONSE.NOT_FOUND.type,
           message: 'Body not found'
         }
       })
@@ -20,10 +21,10 @@ export const bodyNotFound = async (
 
     return
   } catch (error) {
-    return res.status(500).json({
+    return res.status(RESPONSE.SERVER_ERROR.status).json({
       data: {
-        status: 500,
-        type: 'Server error',
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
         message: 'bodyNotFound() middleware'
       }
     })

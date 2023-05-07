@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+import { RESPONSE } from '../constants'
 
 function hasFalsyProperty(obj: Record<string, any>) {
   return Object.values(obj).some(value => !value)
@@ -11,10 +12,10 @@ export const falsyBodyProperties = async (
 ) => {
   try {
     if (hasFalsyProperty(req.body)) {
-      return res.status(400).json({
+      return res.status(RESPONSE.BAD_REQUEST.status).json({
         data: {
-          status: 400,
-          type: 'Bad request',
+          status: RESPONSE.BAD_REQUEST.status,
+          type: RESPONSE.BAD_REQUEST.type,
           message: 'At least one property is falsy'
         }
       })
@@ -24,10 +25,10 @@ export const falsyBodyProperties = async (
 
     return
   } catch (error) {
-    return res.status(500).json({
+    return res.status(RESPONSE.SERVER_ERROR.status).json({
       data: {
-        status: 500,
-        type: 'Server error',
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
         message: 'falsyBodyProperties() middleware'
       }
     })

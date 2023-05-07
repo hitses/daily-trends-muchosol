@@ -1,3 +1,4 @@
+import { RESPONSE } from '../../constants'
 import { scrapElMundo, scrapElPais } from '../../helpers/playwright'
 import { FeedInterface } from '../../models/feed.interface'
 import feedModel from '../../models/feed.model'
@@ -21,8 +22,14 @@ export const createFeedsService = async () => {
     // Return timeout if scraping failed
     if (mundoTimeout || paisTimeout)
       return {
-        status: 408,
-        data: { mundoTimeout, paisTimeout, message: 'Timeout. Try again' }
+        status: RESPONSE.TIMEOUT.status,
+        data: {
+          status: RESPONSE.TIMEOUT.status,
+          type: RESPONSE.TIMEOUT.type,
+          mundoTimeout,
+          paisTimeout,
+          message: 'Timeout! Try again'
+        }
       }
 
     const feeds = [...elMundo, ...elPais]
@@ -45,9 +52,23 @@ export const createFeedsService = async () => {
     if (newFeeds.length > 0)
       await feedModel.insertMany(newFeeds, { ordered: false })
 
-    return { status: 201, data: { message: 'Feeds created' } }
+    return {
+      status: RESPONSE.CREATED.status,
+      data: {
+        status: RESPONSE.CREATED.status,
+        type: RESPONSE.CREATED.type,
+        message: 'Feeds created'
+      }
+    }
   } catch (err) {
-    console.log(err)
-    return { status: 500, data: { message: 'createFeedService()', err } }
+    return {
+      status: RESPONSE.SERVER_ERROR.status,
+      data: {
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
+        message: 'createFeedService()',
+        err
+      }
+    }
   }
 }

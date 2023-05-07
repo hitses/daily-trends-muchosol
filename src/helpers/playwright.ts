@@ -1,6 +1,6 @@
 import playwright from 'playwright'
 import { Page } from '@playwright/test'
-import { MUNDO, PAIS, USER_AGENT } from '../constants'
+import { MUNDO, NEWSPAPER_TYPE, PAIS, USER_AGENT } from '../constants'
 import { FeedInterface } from '../models/feed.interface'
 
 export const scrapElMundo = async () => {
@@ -20,7 +20,7 @@ export const scrapElMundo = async () => {
       const h2 = await link.$(MUNDO.H2_CLASS)
       if (h2) {
         const text = await h2!.innerText()
-        mundoNews.push({ newspaper: 'El Mundo', href, text })
+        mundoNews.push({ newspaper: NEWSPAPER_TYPE.MUNDO, href, text })
       } else continue
     }
 
@@ -44,7 +44,7 @@ export const scrapElPais = async () => {
       let elements = document.querySelectorAll('h2 > a')
       return Array.from(elements).map(element => {
         return {
-          newspaper: 'El País',
+          newspaper: NEWSPAPER_TYPE.PAIS,
           href: element.getAttribute('href') ?? '',
           text: element.textContent ?? ''
         }

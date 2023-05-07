@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+import { RESPONSE } from '../constants'
 
 export const invalidNewspaperType = (
   req: Request,
@@ -11,10 +12,10 @@ export const invalidNewspaperType = (
       typeof newspaper !== 'string' ||
       (newspaper !== 'El País' && newspaper !== 'El Mundo')
     ) {
-      return res.status(400).json({
+      return res.status(RESPONSE.BAD_REQUEST.status).json({
         data: {
-          status: 400,
-          type: 'Bad request',
+          status: RESPONSE.BAD_REQUEST.status,
+          type: RESPONSE.BAD_REQUEST.type,
           message: 'NewsPaper type is invalid'
         }
       })
@@ -24,10 +25,10 @@ export const invalidNewspaperType = (
 
     return
   } catch (error) {
-    return res.status(500).json({
+    return res.status(RESPONSE.SERVER_ERROR.status).json({
       data: {
-        status: 500,
-        type: 'Server error',
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
         message: 'invalidNewspaperType() middleware'
       }
     })

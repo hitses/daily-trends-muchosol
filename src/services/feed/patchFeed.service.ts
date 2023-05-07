@@ -1,3 +1,4 @@
+import { RESPONSE } from '../../constants'
 import { NewspaperType } from '../../models/feed.interface'
 import feedModel from '../../models/feed.model'
 
@@ -14,10 +15,23 @@ export const patchFeedService = async (
       { runValidators: true, new: true }
     )
 
-    if (!feed) return { status: 404, data: { message: 'Feed not found' } }
-
-    return { status: 200, data: feed }
+    return {
+      status: RESPONSE.OK.status,
+      data: {
+        status: RESPONSE.OK.status,
+        type: RESPONSE.OK.type,
+        feed
+      }
+    }
   } catch (err) {
-    return { status: 500, data: { message: 'Patch Feeds Service', err } }
+    return {
+      status: RESPONSE.SERVER_ERROR.status,
+      data: {
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
+        message: 'Patch Feeds Service',
+        err
+      }
+    }
   }
 }

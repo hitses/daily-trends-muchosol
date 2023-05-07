@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import feedModel from '../models/feed.model'
+import { RESPONSE } from '../constants'
 
 export const feedNotFound = async (
   req: Request,
@@ -10,10 +11,10 @@ export const feedNotFound = async (
     const feed = await feedModel.findOne({ _id: req.params.id, delete: false })
 
     if (!feed)
-      return res.status(404).json({
+      return res.status(RESPONSE.NOT_FOUND.status).json({
         data: {
-          status: 404,
-          type: 'Not found',
+          status: RESPONSE.NOT_FOUND.status,
+          type: RESPONSE.NOT_FOUND.type,
           message: 'Feed not found'
         }
       })
@@ -22,10 +23,10 @@ export const feedNotFound = async (
 
     return
   } catch (error) {
-    return res.status(500).json({
+    return res.status(RESPONSE.SERVER_ERROR.status).json({
       data: {
-        status: 500,
-        type: 'Server error',
+        status: RESPONSE.SERVER_ERROR.status,
+        type: RESPONSE.SERVER_ERROR.type,
         message: 'feedNotFound() middleware'
       }
     })

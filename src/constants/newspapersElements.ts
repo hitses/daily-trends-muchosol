@@ -8,6 +8,11 @@ export const MUNDO = Object.freeze({
   H2_CLASS: 'h2.ue-c-cover-content__headline'
 })
 
+export const NEWSPAPER_TYPE = Object.freeze({
+  MUNDO: 'El Mundo',
+  PAIS: 'El País'
+})
+
 export const USER_AGENT = Object.freeze({
   userAgent:
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' +
