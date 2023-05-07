@@ -214,3 +214,5 @@ $RECYCLE.BIN/
 
 # Directories & files users
 mongo
+build
+dist
