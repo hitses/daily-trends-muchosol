@@ -1,10 +1,12 @@
 import { Router } from 'express'
 import {
+  createFeedValidations,
   deleteFeedValidations,
   getFeedValidations,
   patchFeedValidations
 } from '../middlewares'
 import {
+  createFeed,
   createFeeds,
   deleteFeed,
   getFeed,
@@ -14,7 +16,8 @@ import {
 
 const router = Router()
 
-router.post('/new', createFeeds)
+router.post('/', createFeeds)
+router.post('/new', createFeedValidations, createFeed)
 router.get('/', getFeeds)
 router.get('/:id', getFeedValidations, getFeed)
 router.patch('/:id', patchFeedValidations, patchFeed)
