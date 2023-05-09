@@ -1,3 +1,4 @@
+export * from './createFeeds.controller'
 export * from './createFeed.controller'
 export * from './getFeeds.controller'
 export * from './getFeed.controller'

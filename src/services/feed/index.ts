@@ -1,3 +1,4 @@
+export * from './createFeeds.service'
 export * from './createFeed.service'
 export * from './getFeeds.service'
 export * from './getFeed.service'
